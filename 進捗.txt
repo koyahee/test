@@ -1,0 +1,14 @@
+QR→テキスト
+　qr_img2text
+　
+テキスト→YJ
+　csvtest
+
+YJ→番号
+　
+
+番号→配列
+　
+
+配列→チカチカ
+　serial
