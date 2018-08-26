@@ -18,6 +18,8 @@
 from serial import *
 from sys import stdout, stdin, stderr, exit
 
+import LEDctrl
+
 # パラメータの確認
 #   第一引数: シリアルポート名
 if len(sys.argv) != 2:
@@ -102,18 +104,36 @@ while True:
         print "\n%s" % line
     else:
         continue
-
     try:
-        lst = map(ord, line[1:].decode('hex')) # HEX文字列を文字列にデコード後、各々 ord() したリストに変換
-        csum = sum(lst) & 0xff # チェックサムは 8bit 計算で全部足して　0 なら OK
-        lst.pop() # チェックサムをリストから削除
-        if csum == 0:
-            if lst[1] == 0x81:
-                printPayload_0x81(lst) # IO関連のデータの受信
-            else:
-                printPayload(lst) # その他のデータ受信
-        else:
-            print "checksum ng"
+#        lst = map(ord, line[1:].decode('hex')) # HEX文字列を文字列にデコード後、各々 ord() したリストに変換
+#        csum = sum(lst) & 0xff # チェックサムは 8bit 計算で全部足して　0 なら OK
+#        lst.pop() # チェックサムをリストから削除
+
+        lst = line.split(';')
+
+#        print lst[1] 
+        if len(lst) > 3:
+          CHILD_SID = lst[5]
+          DO1 = lst[12]
+
+          if DO1 == '0001':
+            print 'RED'
+            LEDctrl.LED('RED')
+          elif DO1 == '0000':
+            print 'GREEN'
+            LEDctrl.LED('GREEN')
+          else:
+            print DO1
+
+
+
+#        if csum == 0:
+#            if lst[1] == 0x81:
+#                printPayload_0x81(lst) # IO関連のデータの受信
+#            else:
+#                printPayload(lst) # その他のデータ受信
+#        else:
+#            print "checksum ng"
     except:
         print "  skip" # エラー時
 
