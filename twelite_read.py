@@ -96,6 +96,8 @@ def printPayload_0x81(l):
     
     return True
 
+last = 0
+
 # データを１行ずつ解釈する
 while True:
     line = ser.readline().rstrip() # １ライン単位で読み出し、末尾の改行コードを削除（ブロッキング読み出し）
@@ -110,21 +112,34 @@ while True:
 #        lst.pop() # チェックサムをリストから削除
 
         lst = line.split(';')
+        ct = int(lst[1])
 
-#        print lst[1] 
         if len(lst) > 3:
           CHILD_SID = lst[5]
-          DO1 = lst[12]
 
-          if DO1 == '0001':
-            print 'RED'
+          ba = int(lst[6])
+          a2 = int(lst[10])
+
+          last = ct
+
+          if ba/2 > a2:
             LEDctrl.LED('RED')
-          elif DO1 == '0000':
-            print 'GREEN'
-            LEDctrl.LED('GREEN')
-          else:
-            print DO1
 
+          else:
+            LEDctrl.LED('GREEN')
+
+#          if DO1 == '0001':
+#            print 'RED'
+#            LEDctrl.LED('RED')
+#          elif DO1 == '0000':
+#            print 'GREEN'
+#            LEDctrl.LED('GREEN')
+#          else:
+#            print DO1
+
+#        else:
+#          if last + 10 < ct or (last > ct and ct > 10):
+#            LEDctrl.LED()
 
 
 #        if csum == 0:
