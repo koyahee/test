@@ -2,7 +2,7 @@
 Description = Twelite_read
 
 [Service]
-ExecStart=/usr/bin/python /home/pi/twelite_read.py
+ExecStart=/usr/bin/python /home/pi/twelite_read.py /dev/ttyAMA0
 Restart=always
 Type=simple
 ExecStopPost=/usr/bin/python /home/pi/twelite_read.py
