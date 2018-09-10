@@ -2,10 +2,10 @@
 Description = Twelite_read
 
 [Service]
-ExecStart=/usr/bin/python /home/pi/twelite_read.py /dev/ttyAMA0
+ExecStart=/usr/bin/python /home/pi/twelite_door_sensor/twelite_read.py /dev/ttyAMA0
 Restart=always
 Type=simple
-ExecStopPost=/usr/bin/python /home/pi/twelite_read.py
+ExecStopPost=/usr/bin/python /home/pi/twelite_door_sensor/twelite_read.py
 
 [Install]
 WantedBy=multi-user.target
