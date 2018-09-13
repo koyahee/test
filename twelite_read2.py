@@ -3,19 +3,12 @@
 
 from serial import *
 
-import subprocess, sys
+import LEDctrl
 
-#import LEDctrl
 
 last = 0 # last ct
 
 CHECK_INTERVAL = 10
-
-
-if len(sys.argv) > 0:
-    subprocess.call(['/home/pi/Pimoroni/blinkt/examples/rgb.py','0','0','0'])
-
-
 
 while True:
 
@@ -41,17 +34,14 @@ while True:
       last = ct
 
       if V / 2 > a2:
- #       LEDctrl.LED('RED')
-        subprocess.call(['/home/pi//Pimoroni/blinkt/examples/rgb.py', '50', '0', '0'])
+        LEDctrl.LED('RED')
 
       else:
- #       LEDctrl.LED('GREEN')
-        subprocess.call(['/home/pi/Pimoroni/blinkt/examples/rgb.py', '0', '50', '0'])
+        LEDctrl.LED('GREEN')
 
     else:
       if last + CHECK_INTERVAL < ct or (last > ct and ct > CHECK_INTERVAL):
-#        LEDctrl.LED()
-        subprocess.call(['/home/pi/Pimoroni/blinkt/examples/rgb.py', '0', '0', '0'])
+        LEDctrl.LED()
 
   except:
       print "  error"
