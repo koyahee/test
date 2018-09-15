@@ -12,10 +12,9 @@ last = 0 # last ct
 CHECK_INTERVAL = 10
 
 
-if len(sys.argv) > 0:
+if len(sys.argv) > 1:
     subprocess.call(['/home/pi/Pimoroni/blinkt/examples/rgb.py','0','0','0'])
-
-
+    sys.exit(1)
 
 while True:
 
