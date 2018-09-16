@@ -4,7 +4,7 @@ import time
 import RPi.GPIO as GPIO
 import os
 
-pinnumber=23
+pinnumber=3
 GPIO.setmode(GPIO.BCM)
 
 #GPIO23pinを入力モードとし、pull up設定とします 

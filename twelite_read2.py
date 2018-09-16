@@ -15,6 +15,8 @@ while True:
   ser = Serial('/dev/ttyAMA0',115200)
 
   line = ser.readline().rstrip()
+  print line
+
 
   if len(line) > 0 and line[0] == ';':
     print "%s" % line
