@@ -2,7 +2,7 @@
 Description=Shutdown Daemon
 
 [Service]
-ExecStart =/home/pi/twelite_door_sensor/shutdownd.py
+ExecStart=/usr/bin/python /home/pi/twelite_door_sensor/shutdownd.py
 Restart=always
 Type=simple
 
